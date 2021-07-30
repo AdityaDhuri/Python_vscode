@@ -1,120 +1,104 @@
-#Write a program to find the greatest of four no entered by the user
+#write a program to print multiplication table of a given number using for loop
+'''
+a = int(input("Enter the number whose multiplication table you want to see:\t"))
+for i in range(1, 11):
+    print(str(a) + " x " + str(i) + " = " + str(a*i))
+    #print(f"{a}X{i}={a*i}")
 
-a = int(input("Enter first no:\n"))
-b = int(input("Enter 2nd no:\n"))
-c = int(input("Enter 3rd no:\n"))
-d = int(input("Enter 4th no:\n"))
-''' way 1 of my own
-if (a>b and a>c and a>d):
-    print("greater no is", a)
-elif (b>a and b>c and b>d):
-    print("greater no is", b)
-elif (c>a and c>b and c>d):
-    print("greater no is", c)
-else:
-    print("greater no is", d)            
-'''   
-if(a>b):
-    x = a
-else:
-    x = b
-if(c>d):
-    y = c
-else:
-    y = d
-if(x>y):
-    print(x, "is greatest")
-else:
-    print(y, "is greatest")
+#Write a program to greet all the person names stored in a list L1 and which starts with A: L1 = ["Aditya","bana","ankita","Aquib","navneet"]    
+L1 = ["Aditya","bana","ankita","Aquib","navneet"]
+for name in L1:
+    if name.startswith("A"):
+        print("Greetings " + name)
 
-# Write a program to find out whether a student is passed or failed; if it requires total 40% and atleast 33% in each subject to pass. Assume 3 sub and take marks from user
-x = (input("Enter name of 1st student:\n"))
-a = int(input("Enter English subject marks:\n"))
-b = int(input("Enter Maths subject marks:\n"))
-c = int(input("Enter science subject marks:\n"))
-#y = (input("Enter name of 2nd student:\n"))    for 3 users
-#d = int(input("Enter English subject:\n"))
-#e = int(input("Enter Maths subject:\n"))
-#f = int(input("Enter science subject:\n"))
-#z = (input("Enter name of 3rd student:\n"))
-#g = int(input("Enter English subject:\n"))
-#h = int(input("Enter Maths subject:\n"))
-#i = int(input("Enter science subject:\n"))
-if (a<33 or b<33 or c<33 ):
-    print("you are failed in one of the subject",x)
-elif (a + b +c)/3 <40:
-    print("you are failed",x)   
-else :
-    print("Congrats! You are passed",x)   
-#if (d<33 or e<33 or f<33 ):
-#    print("you are failed in one of the subject",y)
-#elif (d + e + f)/3 <40:
-#    print("you are failed",y)   
-#else :
-#    print("Congrats! You are passed",y)   
-#if (g<33 or h<33 or i<33 ):
-#    print("you are failed in one of the subject",z)
-#elif (g + h + i)/3 <40:
-#    print("you are failed",z)   
-#else :
-#    print("Congrats! You are passed",z)            
+# write a program to print multiplication table of a given number using while loop:
+a = int(input("Enter the number whose multiplication table you want to see:\t"))
+i = 1
+while (i<11):
+    print(str(a) + " x " + str(i) + " = " + str(a*i))
+    i = i + 1
 
-# A spam comment is defined as a text conatining following keywords: "make a lot of money", "buy now", "subscribe now", "click this". Write a program to detect this spam.
-
-a = input("Enter text\n")
-
-if("make a lot of money" in a):
-    spam = True
-elif("buy " in a):
-    spam = True
-elif("subscribe " in a):
-    spam = True
-elif("click this" in a):
-    spam = True  
+# Write a program to find out if a entered number is prime or not
+'''
+number = int(input("Enter the number: "))
+prime = True
+for i in range(2, number):
+    if (number%i == 0):    # % gives remainder in integer form. 
+        prime = False
+        break
+if prime:
+    print("this is a prime no")
 else:
-    spam = False
-if (spam):
-    print("This is a spam")
-else:
-    print("This is not a spam")  
+    print("not a prime no")
+'''
+#Write a program to find the sum of n natural number using while loop:
+a = int(input("enter the no till u want the sum "))
+i = 0
+b = 0
+while (i<=a):
+    b = b + i
+    i = i + 1
+print(b)
 
-# Write a program to find a given username contains less than 10 characters or not:
+#Write a program to calculate the factorial of agiven number usimg for loop:
 
-name = input("Enter your name:\n")
-a = len(name)
-print(a)
-if(a < 10):
-    print("Your name consist less than 10 character")
-else:
-    print("Your name consist more than 10 character")    
-  
-# Write a program to find out whether a given name is present in a list or not
+a = int(input("enter the number to be factorial: "))
+b = 1
+for i in range(1, (a+1)):
+    b = b*i
+print(f"The factorial of {a} is {b}")    #print(f" {}  {} ") f helps us to print inbetween values using a curly bracket
 
-a = input("Enter a name:\n")
-b = ["aditya", "bana", "bocha"]
-if (a in b):
-    print("the name is present")
-else:
-    print("the name is not present")    
+# Write a program to print the following star pattern: here n = 3
+#     *
+#   * * * 
+# * * * * * 
+a = int(input("Enter num: "))
+for i in range(a):
+    print(" " * (a-i-1), end="")
+    print("*" * (2*i+1), end="")
+    print(" " * (a-i-1))
+ 
+#extra print to find 
+a = int(input("Enter num: "))
+for i in range(a):
+    print(" " * (a-i-1), end="")
+    print("*" * (i+1))   
+for i in range(a):
+    print(" " * (i+1), end="")
+    print("*" * (a-i-1))
 
-# Write a program to calculate the grade of a student from this marks from the foll: 90-100=Ex ; 80-90=A ; 70-80=B ; 60-70=C ; 50-60=D ; below 50=E
-a = int(input("Enter your marks:\n"))
-if(a>=90 ):
-    print("Your grade is Excellent")
-elif(a>=80 ):
-    print("Your grade is A")
-elif(a>=70 ):
-    print("Your grade is B")
-elif(a>=60 ):
-    print("Your grade is C")    
-elif(a>=50 ):
-    print("Your grade is D")
-else:
-    print("Your grade is F")    
+# Write a program to print the following star pattern: here n = 3
+#  ***
+#  * *
+#  ***
+num = int(input("enter no:"))
+for i in range(num):
+    for j in range(num):
+        if i==0 or i==num-1 or j==0 or j==num-1:
+            print("*",end="")
+        else:
+            print(" ",end="")
+    print()            
 
-# Wite a program to find out whether the post is talking about Bana
-a = ("Name of BaNa is Bocha")
-if 'bana' in a.lower():  #if letters used all small type lower all capital use upper
-    print("the name is present")  
-else:
-    print("the name is not present")      
+# print multiplication table in reversed order using for loop:
+a = int(input("Enter num: "))
+for i in range(10,0,-1):
+    print(f"{a}x{i}={a*i}")
+   
+for row in range(0, 6):
+
+    for col in range(0, 7):
+        if (row==0 and col%3!=0) or (row==1 and col%3==0) or (row-col==2) or (row+col==8):
+            print("*", end="")
+        else:
+            print(" ", end="")
+    print()            
+'''
+#to print diamond
+a =  int(input("Enter a no: "))
+for i in range(a):
+    print(" " * (a-i-1),end="")
+    print("*" * (2*i+1))
+for i in range(a):
+    print(" " * (i+1),end="")
+    print("*" * (2*a-2*i-3))
