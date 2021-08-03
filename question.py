@@ -1,68 +1,112 @@
-# Write a program using function to find the greatest of three numbers:
+#Write a program to read the text from a given file 'poems.txt' and find out whether it contain the word 'twinkle'
 '''
-a = int(input("Enter a no: "))
-b = int(input("Enter a no: "))
-c = int(input("Enter a no: "))
-def greatest(a, b, c):
-    if (a>=b and a>=c):
-        return a 
-    elif (b>a and b>c): 
-        return b   
-    else:
-        return c   
-z = greatest( a, b, c)
-print(f"The greater number is {z}")
+with open('poems.txt','r') as f:
+    a = f.read()
+print(a)
+if 'twinkle' in a:
+    print("twinkle is present")
+else:
+    print("twinkle is not present")
 
-#Write a program to convert celcius to farenheit:
-a = int(input("Enter celcius to convert into farenheit: "))
-def farenheit(a):
-    a =  a * 9/5 + 32
-    return a
-f = farenheit(a)
-print(f"Conversion of {a} Degree Celicus to Farenheit is {f}")    
+#The game() function in a program lets a user play a game and return the score as an integer. You need to read a file 'Hi_score.txt'which is either blank or contains previous Hi-score
+#Write a program to update the hi-score whenever game() breaks the Hi-score
 
-#Write a recursive function to calculate the sum of first n narural no:
-a = int(input("Enter a no: "))
-def number(a):
-    if (a <= 0):
-        return 0
-    return a + number(a-1)
-z = number(a)
-print("sum of " + str(a) + "is " + str(z))
+b = int(input("Enter your Hi_score: "))
+def game():
+    return b
+score = game()
 
-#star
-a = int(input("Enter a no: "))
-for i in range(a):
-    print("*" * (a-i))
- '''  
-# inches to cm using function
-a = int(input("Enter a number to convert from iches to cm: "))
-def cm(a):
-    a = a * 2.54
-    return a
-f = cm(a)    
-print(f"conversion from iches to cm is {f}")
+with open("Hi_score.txt") as f:
+    Hi_score = f.read()
+if (Hi_score == ''):
+    with open("Hi_score.txt","w") as f:
+        f.write(str(score))
+elif int(Hi_score) < score :
+    with open("Hi_score.txt","w") as f:
+        f.write(str(score))
+
+#Write a progrwm to generate  multiplication table from 2-20 an save it in different file:
+
+for a in range(2,21):
+    with open(f"tables/Multiplication_table_of_{a}.txt", 'w') as f:
+        for i in range(1,11):
+            f.write(f"{a} X {i} = {a*i}")
+            if i!=10:
+                f.write('\n')
+
+# A file conatins a word "Donkey" multiple time. You need to write a progrwm to replace the word with ###### by updating the same file
+with open("bocha.txt") as f:
+    content = f.read()
+
+content = content.replace("donkey","######")
+
+with open('bocha.txt','w') as f:
+    f.write(content)
+ 
+# for above program. if list of words are given:
+words = ["donkey", "monkey", "gandu"]
+with open("bocha.txt") as f:
+    content = f.read().lower() #adding .lower() at the end helps to find every possible value for the word eg. AdiTya/adiTYA etc everything will be detected as aditya but everything will be saved in lower case in content
+for word in words:
+    content = content.replace(word,"######")
+    with open('bocha.txt','w') as f:
+        f.write(content)
+  
+# write a program to mine a log file(i used normal file) and find whether it contains python   
+with open('bocha.txt') as f:
+    content = f.read()
+
+if 'python' in content.lower(): #adding .lower() here will check every possibility and will not chanege in actual content when print
+    print("yes it is present")
+else:
+    print("no not present")
+        
+# write a program to mine a log file(i used normal file) and find whether it contains python also find the line no:
+content = True
+i = 1
+with open('bocha.txt') as f:
+    while content:
+        content = f.readline() #reads line 
+
+        if 'python' in content.lower():
+            print(content)
+            print("yes python is present")
+            print(i)
+        i+=1        
+
+# Write a program to make a copy of a text file:
+with open('bocha.txt') as f:
+    content = f.read()
+
+with open('aditya.txt','w') as f:
+    f.write(content)
+
+# write a program to find whether  afile is identical and matches the content of another file:
+with open('bocha.txt') as f:
+    content = f.read()
+
+with open('aditya.txt') as f:
+    content2 = f.read()
+
+if content == content2:
+    print("they are identical")
+else:
+    print("they are not identical")    
+
+#Write a program to wipe out the content inside a file using python:
+with open('aditya.txt','w') as f:
+    f.write("")
+
+# Write a program to rename a file to rename_by_python.txt: (to delete previous file)
+import os   #a function used here to remove 
+
+oldname = "sample.txt"
+newname = "rename_by_python.txt"
+with open(oldname) as f:
+    content = f.read()
+
+with open(newname,'w') as f:
+    f.write(content)
+
+os.remove(oldname)    
 '''
-#write a program to remove a given word from a string and strip it at the same time. using function
-a = "      aditya bana bocha gadhav    "
-def b(a, word):
-    c = a.replace(word,"")
-    return c.strip()
-d = b(a,"bocha")
-print(d)
-
-
-#multiplication table using function:
-a = int(input("Enter the number:\n"))
-def multiplication(a):
-    for i in range(1,11):
-        print(a,'X', i, '=',a*i)  
-multiplication(a)    
-'''
-words = '''
-Hawkins Cooker Ltd. may be the best  start I can get for my carrier. As I read in your Bio, company gives well-established
-management training which will help me to increase my skills and knowledge. I am starting my carrer as a python developer and i tend to reach the height, from where I can feel my success.
-From your guidance and expertise i can make that happen within a short period of time. Debate, Drama, Sportsman, Mentor, Challenger, Team-Player, Quick-Learner, Analytical Thinking are
-some of my skills. I am also hungry for work and if you give me an opportunity, I will be the best candidate selected for sure.
-'''
-print(len(words))
