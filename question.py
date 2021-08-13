@@ -1,112 +1,168 @@
-#Write a program to read the text from a given file 'poems.txt' and find out whether it contain the word 'twinkle'
+# Create  aclass C-2d Vector and use it to create another class representing a 3d  vector
 '''
-with open('poems.txt','r') as f:
-    a = f.read()
-print(a)
-if 'twinkle' in a:
-    print("twinkle is present")
-else:
-    print("twinkle is not present")
+class C2dVector():
+    def __init__(self, i, j):
+        self.icap = i
+        self.jcap = j
 
-#The game() function in a program lets a user play a game and return the score as an integer. You need to read a file 'Hi_score.txt'which is either blank or contains previous Hi-score
-#Write a program to update the hi-score whenever game() breaks the Hi-score
+    def __str__(self):
+        return f"{self.icap}i + {self.jcap}j"    
 
-b = int(input("Enter your Hi_score: "))
-def game():
-    return b
-score = game()
+class C3dVector(C2dVector):
+    def __init__(self, i, j, k):
+        super().__init__(i, j)
+        self.kcap = k
+    
+    def __str__(self):
+        return f"{self.icap}i + {self.jcap}j + {self.kcap}k" 
 
-with open("Hi_score.txt") as f:
-    Hi_score = f.read()
-if (Hi_score == ''):
-    with open("Hi_score.txt","w") as f:
-        f.write(str(score))
-elif int(Hi_score) < score :
-    with open("Hi_score.txt","w") as f:
-        f.write(str(score))
+c2d = C2dVector(1, 3)
+c3d = C3dVector(1, 3, 7)
+print(c2d)
+print(c3d)
 
-#Write a progrwm to generate  multiplication table from 2-20 an save it in different file:
+#Create a class pets from a class animals and further create class Dog from pets. add a method bark to class Dog:
 
-for a in range(2,21):
-    with open(f"tables/Multiplication_table_of_{a}.txt", 'w') as f:
-        for i in range(1,11):
-            f.write(f"{a} X {i} = {a*i}")
-            if i!=10:
-                f.write('\n')
+class Animals():
+    lion = 'Roar'
+    Dog = 'humming'
+class Pets(Animals):
+    cat = 'meow'
 
-# A file conatins a word "Donkey" multiple time. You need to write a progrwm to replace the word with ###### by updating the same file
-with open("bocha.txt") as f:
-    content = f.read()
+class Dogs(Pets):
+    @classmethod
+    def changeName(self, b):
+        self.Dog = b
+    
+a = Animals()
+p = Pets()
+d = Dogs()
+print(d.Dog)
+d.changeName('Bark')
+print(d.Dog)
 
-content = content.replace("donkey","######")
+# Create a class Employee and add Salary and increment properties to it. 
+# Write a method salary after Increment with a @property decorator with a setter which changes the value of increment based on the salary
 
-with open('bocha.txt','w') as f:
-    f.write(content)
- 
-# for above program. if list of words are given:
-words = ["donkey", "monkey", "gandu"]
-with open("bocha.txt") as f:
-    content = f.read().lower() #adding .lower() at the end helps to find every possible value for the word eg. AdiTya/adiTYA etc everything will be detected as aditya but everything will be saved in lower case in content
-for word in words:
-    content = content.replace(word,"######")
-    with open('bocha.txt','w') as f:
-        f.write(content)
-  
-# write a program to mine a log file(i used normal file) and find whether it contains python   
-with open('bocha.txt') as f:
-    content = f.read()
+class Employee():
+    salary = 1000
+    increment = 1.5
 
-if 'python' in content.lower(): #adding .lower() here will check every possibility and will not chanege in actual content when print
-    print("yes it is present")
-else:
-    print("no not present")
+    @property
+    def totalSalary(self):
+        print("The salary of the Employee 1 is: ")
+        return self.salary * self.increment
         
-# write a program to mine a log file(i used normal file) and find whether it contains python also find the line no:
-content = True
-i = 1
-with open('bocha.txt') as f:
-    while content:
-        content = f.readline() #reads line 
+    @totalSalary.setter
+    def totalSalary(self, final):
+        self.increment = final / self.salary
+        print("The increment in the Employee's 1 salary is: ")
 
-        if 'python' in content.lower():
-            print(content)
-            print("yes python is present")
-            print(i)
-        i+=1        
+e = Employee()
+print(e.totalSalary)
+e.totalSalary = 2000
+print(e.increment)
 
-# Write a program to make a copy of a text file:
-with open('bocha.txt') as f:
-    content = f.read()
+#Write a class Complex to represent coplex numbers along with overloaded operators + and * which adds and multiplies them:
+# (a+bi)(c+di) = (ac-bd) + (ad+bc)i
+class ComplexNumber():
+    def __init__(self, r, i):
+        self.real = r
+        self.imaginary = i
 
-with open('aditya.txt','w') as f:
-    f.write(content)
+    def __add__(self, c):
+        return ComplexNumber(self.real + c.real, self.imaginary + c.imaginary)    
+    
+    def __mul__(self, c):
+        mulReal = self.real * c.real - self.imaginary * c.imaginary
+        mulImg = self.real * c.imaginary + self.imaginary * c.real
+        return ComplexNumber(mulReal , mulImg)
+    
+    def __str__(self):
+        return f"{self.real} + {self.imaginary}i"
 
-# write a program to find whether  afile is identical and matches the content of another file:
-with open('bocha.txt') as f:
-    content = f.read()
+c1 = ComplexNumber(1, -2)
+c2 = ComplexNumber(8, -3)
+print(c1 +c2)
+print(c1 * c2)
 
-with open('aditya.txt') as f:
-    content2 = f.read()
+# Writw a class vector representing a vector of n dimensions. overload the + amd * operator which calculate the sum and the dot prduct of them:
+class Vector():
+    def __init__(self, vec):
+        self.vec = vec
+    
+    def __str__(self):
+        str1 = ""
+        index = 0
+        for i in self.vec:
+            str1 += f"{i}a{index} +"
+            index += 1
+        return str1[:-1]
 
-if content == content2:
-    print("they are identical")
-else:
-    print("they are not identical")    
+    def __add__(self, vec2):
+        newList = []
+        for i  in range(len(self.vec)):
+            newList.append(self.vec[i] + vec2.vec[i])
+        return Vector(newList)
 
-#Write a program to wipe out the content inside a file using python:
-with open('aditya.txt','w') as f:
-    f.write("")
+    def __mul__(self, vec2):
+        sum = 0
+        for i  in range(len(self.vec)):
+            sum += self.vec[i] * vec2.vec[i]
+        return sum
 
-# Write a program to rename a file to rename_by_python.txt: (to delete previous file)
-import os   #a function used here to remove 
+v1 = Vector([1, 4])
+v2 = Vector([1, 6])
+print(v1 + v2)
+print(v1 * v2)
 
-oldname = "sample.txt"
-newname = "rename_by_python.txt"
-with open(oldname) as f:
-    content = f.read()
+#Write a __str__() method to print the vector 7i^ + 8j^ +10k^ assume vector of 3D:
+class Vector():
+    def __init__(self, i, j, k):
+    #def __init__(self, vec):
+        #self.vec = vec
+        self.i = i
+        self.j = j
+        self.k = k
+        
+    def __str__(self):
+        return f"{self.i}i + {self.j}j + {self.k}k"
+        #return f"{self.vec[0]}i + {self.vec[1]}j + {self.vec[2]}k"
 
-with open(newname,'w') as f:
-    f.write(content)
+c1 = Vector(7, 8, 10)
+#c1 = Vector([7, 8, 10])
+print(c1)
 
-os.remove(oldname)    
+#Overide the __len__() method on Vector of problem 5 to display the dimension of the vector.
+class Vector():
+    def __init__(self, vec):
+        self.vec = vec
+    
+    def __str__(self):
+        str1 = ""
+        index = 0
+        for i in self.vec:
+            str1 += f"{i}a{index} +"
+            index += 1
+        return str1[:-1]
+
+    def __add__(self, vec2):
+        newList = []
+        for i  in range(len(self.vec)):
+            newList.append(self.vec[i] + vec2.vec[i])
+        return Vector(newList)
+
+    def __mul__(self, vec2):
+        sum = 0
+        for i  in range(len(self.vec)):
+            sum += self.vec[i] * vec2.vec[i]
+        return sum
+
+    def __len__(self):
+        return len(self.vec)   #this will print the length 
+
+v1 = Vector([1, 4])
+v2 = Vector([1, 6])
+print(len(v1))
+print(len(v2))
 '''
