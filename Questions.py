@@ -1,104 +1,58 @@
-#write a program to print multiplication table of a given number using for loop
+# Create two virtual environment and install few packages in the first one. how do you create a similar environment in the second one?
+
+#   to create a virtual environment we have to install a virtual environment.
+#   step 1: pip install virtualenv
+#   step 2: activate => virtualenv myproj1env 
+#   #step 3: in terminal => .\myproj1env\Scripts\activate.ps1  ( in case of error type => Set-ExecutionPolicy -ExecutionPolicy Unrestricted and then step 3)
+#   this is how one virtualenv is created. To create multiple follow from step 2
+#   this will show name of your virtualenv in your terminal as (myproj1env) PS A:\
+#   After creating 1st virtual env add some contents in it like : pip install flash(this is only a eg.)
+#   myproj1env will have this flash installed in it
+#   To find out all contents inside it type => pip freeze
+#   To copy your requirement/contents to another file use => pip freeze > requirements.txt (all contents will be copied in requirements.txt)   
+#   To install contents of myproj1env to myproj2env first deacativate it by typing deactivate in terminal then open second terminal  add requirements.txt in that terinal
+#   and type => pip install -r requirements.txt
+#   using this command will install all the contents from requirements.txt
 '''
-a = int(input("Enter the number whose multiplication table you want to see:\t"))
-for i in range(1, 11):
-    print(str(a) + " x " + str(i) + " = " + str(a*i))
-    #print(f"{a}X{i}={a*i}")
+# Write a program to input name, marks and phone number of a student and format it using the format function like below:
+# "The name of the student is aditya, his marks are 92 and phone number is 9999988888"
+name = input("Enter your name: ")
+marks = int(input("Please Enter your Marks: "))
+num = int(input("Please enter your mobile number: "))
+a = "The name of the student is {}, his marks are {} and phone number is {}.".format(name, marks, num)
+print(a)
 
-#Write a program to greet all the person names stored in a list L1 and which starts with A: L1 = ["Aditya","bana","ankita","Aquib","navneet"]    
-L1 = ["Aditya","bana","ankita","Aquib","navneet"]
-for name in L1:
-    if name.startswith("A"):
-        print("Greetings " + name)
+# A List contains the multiplication table of 7. Write a program to convert it to a vertical string of same number(7)
+#                                                                                                                 (14)
+#                                                                                                                 (21)
+l = [str(i*7) for i in range(1, 11)]
+print(l)
+v ="\n".join(l)
+print(v)
 
-# write a program to print multiplication table of a given number using while loop:
-a = int(input("Enter the number whose multiplication table you want to see:\t"))
-i = 1
-while (i<11):
-    print(str(a) + " x " + str(i) + " = " + str(a*i))
-    i = i + 1
+# Write a program to filter a list of numbers which are divisible by 5
+l = [1, 5, 10, 12, 15, 25, 20]
+g = lambda num: num%5 == 0 
+print(list(filter(g, l)))   
 
-# Write a program to find out if a entered number is prime or not
-'''
-number = int(input("Enter the number: "))
-prime = True
-for i in range(2, number):
-    if (number%i == 0):    # % gives remainder in integer form. 
-        prime = False
-        break
-if prime:
-    print("this is a prime no")
-else:
-    print("not a prime no")
-'''
-#Write a program to find the sum of n natural number using while loop:
-a = int(input("enter the no till u want the sum "))
-i = 0
-b = 0
-while (i<=a):
-    b = b + i
-    i = i + 1
-print(b)
+#Write a program to find the maximum of the numbers in a list using the reduce function:
+from functools import reduce
+l = [3, 8, 4, 5, 10]
+a = reduce(max, l)   #max is a inbuilt function
+print(a)
 
-#Write a program to calculate the factorial of agiven number usimg for loop:
+# Explore the Flask module and Create a web server using Flask and Python. 
+from flask import Flask
+app = Flask(__name__)
 
-a = int(input("enter the number to be factorial: "))
-b = 1
-for i in range(1, (a+1)):
-    b = b*i
-print(f"The factorial of {a} is {b}")    #print(f" {}  {} ") f helps us to print inbetween values using a curly bracket
+@app.route('/')
+def hello_world():
+    return 'Hello, World Skealy is back.'
 
-# Write a program to print the following star pattern: here n = 3
-#     *
-#   * * * 
-# * * * * * 
-a = int(input("Enter num: "))
-for i in range(a):
-    print(" " * (a-i-1), end="")
-    print("*" * (2*i+1), end="")
-    print(" " * (a-i-1))
- 
-#extra print to find 
-a = int(input("Enter num: "))
-for i in range(a):
-    print(" " * (a-i-1), end="")
-    print("*" * (i+1))   
-for i in range(a):
-    print(" " * (i+1), end="")
-    print("*" * (a-i-1))
-
-# Write a program to print the following star pattern: here n = 3
-#  ***
-#  * *
-#  ***
-num = int(input("enter no:"))
-for i in range(num):
-    for j in range(num):
-        if i==0 or i==num-1 or j==0 or j==num-1:
-            print("*",end="")
-        else:
-            print(" ",end="")
-    print()            
-
-# print multiplication table in reversed order using for loop:
-a = int(input("Enter num: "))
-for i in range(10,0,-1):
-    print(f"{a}x{i}={a*i}")
-   
-for row in range(0, 6):
-
-    for col in range(0, 7):
-        if (row==0 and col%3!=0) or (row==1 and col%3==0) or (row-col==2) or (row+col==8):
-            print("*", end="")
-        else:
-            print(" ", end="")
-    print()            
-'''
-#to print diamond
-a =  int(input("Enter a no: "))
-for i in range(a):
-    print(" " * (a-i-1),end="")
-    print("*" * (2*i+1))
-for i in range(a):
-    print(" " * (i+1),end="")
-    print("*" * (2*a-2*i-3))
+if __name__== "__main__":
+    app.run(debug=True)
+'''    
+from functools import reduce
+l = [3, 8, 4, 5, 10]
+a = reduce(min, l) 
+print(a)
